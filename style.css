@@ -1,12 +1,12 @@
 body {
     font-family: Arial;
     text-align: center;
-    background-color: #f4f6f8;
-    margin: 0;
+    background-color: #1586f7;
+    margin: 2px;
 }
 
 div {
-    background: white;
+    background: rgb(228, 22, 22);
     margin: 20px auto;
     padding: 20px;
     width: 70%;
@@ -56,5 +56,5 @@ button {
 }
 
 button:hover {
-    background-color: #2459c7;
+    background-color: #45cf05;
 }

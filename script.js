@@ -48,6 +48,21 @@ function setLevel(level) {
 
 let cardValues = ["🍎", "🍌", "🍇", "🍉", "🍒", "🥝", "🍍", "🥥"];
 
+let firstCard = null;
+let secondCard = null;
+let lockBoard = false;
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+
+        let j = Math.floor(Math.random() * (i + 1));
+
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
 function startGame() {
 
     if (currentLevel === "") {
@@ -68,14 +83,25 @@ function startGame() {
     let selectedCards = cardValues.slice(0, pairCount);
     let gameCards = selectedCards.concat(selectedCards);
 
+    shuffle(gameCards);
+
     let board = document.getElementById("gameBoard");
+    
     board.innerHTML = "";
+
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
 
     for (let i = 0; i < gameCards.length; i++) {
         let card = document.createElement("div");
 
         card.className = "card";
         card.innerText = "?";
+
+        card.dataset.value = gameCards[i];
+
+        card.dataset.id = i;
 
         board.appendChild(card);
     }

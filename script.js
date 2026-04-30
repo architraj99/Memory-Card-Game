@@ -44,3 +44,40 @@ function setLevel(level) {
     document.getElementById("popup").style.display = "flex";
 
 }
+
+
+let cardValues = ["🍎", "🍌", "🍇", "🍉", "🍒", "🥝", "🍍", "🥥"];
+
+function startGame() {
+
+    if (currentLevel === "") {
+        document.getElementById("level").innerText = "Please Select A Level";
+        return;
+    }
+
+    let pairCount = 4;
+
+    if (currentLevel === "Medium") {
+        pairCount = 6;
+    }
+
+    if(currentLevel === "Hard") {
+        pairCount = 8;
+    }
+
+    let selectedCards = cardValues.slice(0, pairCount);
+    let gameCards = selectedCards.concat(selectedCards);
+
+    let board = document.getElementById("gameBoard");
+    board.innerHTML = "";
+
+    for (let i = 0; i < gameCards.length; i++) {
+        let card = document.createElement("div");
+
+        card.className = "card";
+        card.innerText = "?";
+
+        board.appendChild(card);
+    }
+
+}

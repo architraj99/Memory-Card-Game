@@ -93,6 +93,8 @@ function startGame() {
     secondCard = null;
     lockBoard = false;
 
+    document.getElementById("moves").innerText = "0";
+
     for (let i = 0; i < gameCards.length; i++) {
         let card = document.createElement("div");
 
@@ -100,10 +102,36 @@ function startGame() {
         card.innerText = "?";
 
         card.dataset.value = gameCards[i];
-
         card.dataset.id = i;
+
+        card.onclick = function() {
+            flipCard(Card);
+        }; 
 
         board.appendChild(card);
     }
 
+}
+
+function flipCard(card) {
+    if (lockBoard === true) {
+        return;
+    }
+
+    if (card.classList.contains("flipped")) {
+        return;   
+    }
+
+    card.innerText = card.dataset.value;
+    card.classList.add("flipped");
+
+    if (firstCard === null) {
+        firstCard = card;
+        return;
+    }
+
+    secondCard = card;
+    lockBoard =true;
+
+    document.getElementById("moves").innerText = Number(document.getElementById("moves").innerText) + 1;
 }

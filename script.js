@@ -105,7 +105,7 @@ function startGame() {
         card.dataset.id = i;
 
         card.onclick = function() {
-            flipCard(Card);
+            flipCard(card);
         }; 
 
         board.appendChild(card);
@@ -134,4 +134,40 @@ function flipCard(card) {
     lockBoard =true;
 
     document.getElementById("moves").innerText = Number(document.getElementById("moves").innerText) + 1;
+
+    checkMatch();
+}
+
+function checkMatch() {
+    if (firstCard.dataset.value === secondCard.dataset.value) {
+
+        firstCard.classList.add("matched");
+        secondCard.classList.add("matched");
+    
+
+    document.getElementById("gameStatus").innerText = "Nice! Cards matched";
+
+    resetSelection();
+    }
+
+    else {
+            document.getElementById("gameStatus").innerText = "Not a match, try again";
+
+        setTimeout(function() {
+
+            firstCard.innerText = "?";
+            secondCard.innerText = "?";
+
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+
+            resetSelection();
+        }, 800);
+    }
+}
+
+function resetSelection() {
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
 }

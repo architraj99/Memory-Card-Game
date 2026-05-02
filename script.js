@@ -51,6 +51,7 @@ let cardValues = ["🍎", "🍌", "🍇", "🍉", "🍒", "🥝", "🍍", "🥥"
 let firstCard = null;
 let secondCard = null;
 let lockBoard = false;
+let matchedCount = 0;
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -92,8 +93,10 @@ function startGame() {
     firstCard = null;
     secondCard = null;
     lockBoard = false;
+    matchedCount: 0;
 
     document.getElementById("moves").innerText = "0";
+    document.getElementById("gameStatus").innerText = "Match all cards to complete the level";
 
     for (let i = 0; i < gameCards.length; i++) {
         let card = document.createElement("div");
@@ -143,9 +146,12 @@ function checkMatch() {
 
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
-    
+
+        matchedCount+=2;
 
     document.getElementById("gameStatus").innerText = "Nice! Cards matched";
+
+    checkWin();
 
     resetSelection();
     }
@@ -170,4 +176,24 @@ function resetSelection() {
     firstCard = null;
     secondCard = null;
     lockBoard = false;
+}
+
+function checkWin() {
+
+    let totalCards = document.querySelectorAll(".card").length;
+
+    if(matchedCount === totalCards) {
+        document.getElementById("finalMoves").innerText = "Moves: " + document.getElementById("moves").innerText;
+
+        document.getElementById("winPopup").style.display = "flex";
+
+        document.getElementById("gameStatus").innerText = "Level Completed!";
+    }
+}
+
+function restartGame() {
+
+    document.getElementById("winPopup").style.display = "none";
+
+    startGame();
 }

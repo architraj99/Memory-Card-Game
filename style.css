@@ -63,7 +63,7 @@ button:hover {
 #gameBoard {
     display: grid;
     grid-template-columns: repeat(4, 70px);
-    gap: 12px;
+    gap: 40px;
     justify-content: center;
     margin-top: 15px;
 }

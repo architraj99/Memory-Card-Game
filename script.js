@@ -53,6 +53,27 @@ let secondCard = null;
 let lockBoard = false;
 let matchedCount = 0;
 
+let timeTaken = 0;
+let timer = null;
+
+function startTimer() {
+    clearInterval(timer);
+
+    timeTaken= 0;
+    document.getElementById("time").innerText = timeTaken;
+
+    timer = setInterval(function(){
+        timeTaken++;
+        document.getElementById("time").innerText = timeTaken;
+    }, 1000);
+
+}
+
+function stopTimer() {
+    clearInterval(timer);
+    timer = null;
+}
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
 
@@ -98,6 +119,9 @@ function startGame() {
     document.getElementById("moves").innerText = "0";
     document.getElementById("gameStatus").innerText = "Match all cards to complete the level";
 
+    startTimer();
+
+
     for (let i = 0; i < gameCards.length; i++) {
         let card = document.createElement("div");
 
@@ -117,13 +141,11 @@ function startGame() {
 }
 
 function flipCard(card) {
-    if (lockBoard === true) {
+    if (lockBoard) 
         return;
-    }
 
-    if (card.classList.contains("flipped")) {
+    if (card.classList.contains("flipped")) 
         return;   
-    }
 
     card.innerText = card.dataset.value;
     card.classList.add("flipped");
@@ -147,7 +169,7 @@ function checkMatch() {
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
 
-        matchedCount+=2;
+        matchedCount += 2;
 
     document.getElementById("gameStatus").innerText = "Nice! Cards matched";
 
@@ -183,7 +205,12 @@ function checkWin() {
     let totalCards = document.querySelectorAll(".card").length;
 
     if(matchedCount === totalCards) {
+
+        stopTimer();
+
         document.getElementById("finalMoves").innerText = "Moves: " + document.getElementById("moves").innerText;
+
+        document.getElementById("finalTime").innerText = "Time: " + timeTaken + " Seconds";
 
         document.getElementById("winPopup").style.display = "flex";
 

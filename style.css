@@ -116,6 +116,12 @@ button:hover {
     align-items: center;
 }
 
+#rating {
+    font-size: 18px;
+    color: #ff9800;
+    margin-top: 10px;
+}
+
 @media (max-width: 700px) {
     div {
         width: 90%;

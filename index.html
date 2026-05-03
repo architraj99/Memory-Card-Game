@@ -36,9 +36,11 @@
         <button onclick="setLevel('Medium')">Medium</button>
         <button onclick="setLevel('Hard')">Hard</button>
 
-    </div>
+        <br><br>
 
-    <br>
+        <button onclick="startGame()">Start</button>
+
+    </div>
 
     <div>
 
@@ -73,16 +75,18 @@
 
         <h2>Controls</h2>
 
-        <button onclick="startGame()">Start Game</button>
-        <button>Restart</button>
+        <button onclick="restartGame()">Restart Game</button>
 
     </div>
     
     <div id="winPopup" style="display: none;">
         <div class="popup-box">
             <h2>Level Completed</h2>
+
             <p id="finalMoves">Moves: 0 </p>
             <p id="finalTime">Time: 0 Seconds</p>
+            <p id="rating">Rating: ⭐⭐⭐</p>
+
 
             <button onclick="restartGame()">Play Again</button>
 

@@ -74,6 +74,20 @@ function stopTimer() {
     timer = null;
 }
 
+function calculateRating() {
+    let moves = Number(document.getElementById("moves").innerText);
+
+    if (moves <= 10) {
+        return "⭐⭐⭐";
+    }
+    else if (moves <= 18) {
+        return "⭐⭐";
+    }
+    else {
+        return "⭐";
+    }
+}
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
 
@@ -211,6 +225,8 @@ function checkWin() {
         document.getElementById("finalMoves").innerText = "Moves: " + document.getElementById("moves").innerText;
 
         document.getElementById("finalTime").innerText = "Time: " + timeTaken + " Seconds";
+
+        document.getElementById("rating").innerText = "Rating: " + calculateRating();  
 
         document.getElementById("winPopup").style.display = "flex";
 

@@ -162,7 +162,10 @@ function flipCard(card) {
         return;   
 
     card.innerText = card.dataset.value;
+    
     card.classList.add("flipped");
+
+    card.classList.add("flip-anim");
 
     if (firstCard === null) {
         firstCard = card;
@@ -195,15 +198,24 @@ function checkMatch() {
     else {
             document.getElementById("gameStatus").innerText = "Not a match, try again";
 
+            firstCard.classList.add("wrong");
+            secondCard.classList.add("wrong");
+
         setTimeout(function() {
+
+            firstCard.classList.remove("wrong");
+            secondCard.classList.remove("wrong");
 
             firstCard.innerText = "?";
             secondCard.innerText = "?";
 
             firstCard.classList.remove("flipped");
             secondCard.classList.remove("flipped");
+            firstCard.classList.remove("flip-anim");
+            secondCard.classList.remove("flip-anim");
 
             resetSelection();
+            
         }, 800);
     }
 }

@@ -30,7 +30,7 @@ let currentLevel = "";
 function setLevel(level) {
     currentLevel = level;
     document.getElementById("level").innerText = level;
-    document.getElementById("popupText").innerText = "Level " level + " Selected";
+    document.getElementById("popupText").innerText = "Level " + level + " Selected";
     document.getElementById("popupTitle").innerText = "Level Selected";
     document.getElementById("popup").style.display = "flex";
 }

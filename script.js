@@ -21,7 +21,7 @@ function nextStep() {
     else if (step === 3) {
         title.innerText = "Levels";
         text.innerText = "Game has multiple levels with increasing difficulty";
-        button.innerText = "Start Game";
+        button.innerText = "Got It";
     }
 
     else {
@@ -160,7 +160,6 @@ function startGame() {
         card.innerText = "?";
 
         card.dataset.value = gameCards[i];
-        card.dataset.id = i;
 
         card.onclick = function() {
             flipCard(card);
@@ -271,6 +270,18 @@ function checkWin() {
 function restartGame() {
 
     document.getElementById("winPopup").style.display = "none";
+
+    stopTimer();
+
+    firstCard = null;
+    secondCard = null;
+    lockboard = false;
+    matchedCount = 0;
+
+    document.getElementById("moves").innerText = "0";
+    document.getElementById("time").innerText = "0";
+    document.getElementById("rating").innerText = "Rating: ⭐⭐⭐ "
+
 
     startGame();
 }

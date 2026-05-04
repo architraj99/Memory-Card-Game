@@ -79,7 +79,6 @@ button {
 button:hover {
     opacity: 0.85;
     cursor: pointer;
-    background-color: #45cf05;
 }
 
 button:active {

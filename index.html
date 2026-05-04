@@ -39,6 +39,19 @@
         <br><br>
 
         <button onclick="startGame()">Start Game</button>
+        <button onclick="restartGame()">Restart</button>
+
+    </div>
+
+     <div>
+
+        <h2>Game Stats</h2>
+
+        <p>Moves: <span id="moves">0</span> </p>
+
+        <p>Time: <span id="time">0</span> Seconds </p>
+ 
+        <p>Level: <span id="level">Not Selected</span>  </p>
 
     </div>
 
@@ -50,19 +63,6 @@
 
     </div>
 
-    <div>
-
-        <h2>Game Stats</h2>
-
-        <p>Moves: <span id="moves">0</span> </p>
-
-        <p>Time: <span id="time">0</span> Seconds </p>
- 
-        <p>Level: <span id="level">Not Selected</span>  </p>
-
-    </div>
- 
-    <br>
 
     <div>
         <h2>Game Status</h2>
@@ -71,15 +71,12 @@
 
     <div>
 
-        <h2>Controls</h2>
-
-        <button onclick="restartGame()">Restart Game</button>
-
+      
     </div>
     
     <div id="winPopup" style="display: none;">
         <div class="popup-box">
-            <h2>Level Completed</h2>
+            <h2>Level Completed 🏆</h2>
 
             <p id="finalMoves">Moves: 0 </p>
             <p id="finalTime">Time: 0 Seconds</p>

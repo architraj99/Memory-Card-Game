@@ -56,6 +56,22 @@ let matchedCount = 0;
 let timeTaken = 0;
 let timer = null;
 
+function playSound(type) {
+    let sound = new Audio();
+
+    if (type === "match") {
+        sound.src = "https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg";
+    }
+    else if (type === "wrong") {
+        sound.src = "https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg";
+    }
+    else if (type === "win") {
+        sound.src = "https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg";
+    }
+
+    sound.play();
+}
+
 function startTimer() {
     clearInterval(timer);
 
@@ -132,7 +148,7 @@ function startGame() {
     matchedCount: 0;
 
     document.getElementById("moves").innerText = "0";
-    document.getElementById("gameStatus").innerText = "Match all cards to complete the level";
+    document.getElementById("gameStatus").innerText = "Find all matching pairs to complete the level!";
     document.getElementById("rating").innerText = "Rating: ⭐⭐⭐";
     startTimer();
 
@@ -187,22 +203,26 @@ function checkMatch() {
         firstCard.classList.add("matched");
         secondCard.classList.add("matched");
 
+        playSound("match");
+
         matchedCount += 2;
 
-    document.getElementById("gameStatus").innerText = "Nice! Cards matched";
+        document.getElementById("gameStatus").innerText = "Nice! Cards Matched";
 
-    checkWin();
+        checkWin();
 
-    resetSelection();
+        resetSelection();
     }
 
     else {
+            playSound("wrong");
+
             document.getElementById("gameStatus").innerText = "Not a match, try again";
 
             firstCard.classList.add("wrong");
             secondCard.classList.add("wrong");
 
-        setTimeout(function() {
+            setTimeout(function() {
 
             firstCard.classList.remove("wrong");
             secondCard.classList.remove("wrong");
@@ -234,6 +254,7 @@ function checkWin() {
     if(matchedCount === totalCards) {
 
         stopTimer();
+        playSound("win");
 
         document.getElementById("finalMoves").innerText = "Moves: " + document.getElementById("moves").innerText;
 
@@ -250,11 +271,6 @@ function checkWin() {
 function restartGame() {
 
     document.getElementById("winPopup").style.display = "none";
-
-    firstCard = null;
-    secondCard = null;
-    lockBoard = false;
-    matchedCount = 0;
 
     startGame();
 }

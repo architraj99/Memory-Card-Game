@@ -1,16 +1,25 @@
 body {
     font-family: Arial;
     text-align: center;
-    background-color: #1586f7;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
     margin: 0;
+    color: white;
 }
 
 div {
-    background: rgb(228, 22, 22);
+    background: rgba(228, 22, 22, 0.95);
+    color: #222;
     margin: 20px auto;
     padding: 20px;
     width: 70%;
-    border-radius: 10px;
+    border-radius: 14px;
+}
+
+hr {
+    width: 70%;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.4);
+   
 }
 
 #popup {
@@ -25,15 +34,16 @@ div {
     display:flex;
     justify-content: center;
     align-items: center;
+    z-index: 9999;
 }
 
 .popup-box {
     background: white;
     padding: 30px;
     width: 300px;
-    border-radius: 10px;
+    border-radius: 14px;
 
-    animation: popupAnim 0.5s ease;
+    animation: popupAnim 0.5s ease, fadeIn 0.5 ease;
 }
 
 @keyframes popupAnim {
@@ -58,15 +68,22 @@ div {
 
 button {
     padding: 10px 15px;
-    background-color: #2f6fed;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     margin: 5px;
+    transition: transform 0.2 ease, opacity 0.2 ease;
 }
 
 button:hover {
+    opacity: 0.85;
+    cursor: pointer;
     background-color: #45cf05;
+}
+
+button:active {
+    transform: scale(0.96);
 }
 
 #gameBoard {
@@ -75,12 +92,15 @@ button:hover {
     gap: 40px;
     justify-content: center;
     margin-top: 15px;
+    background: transparent;
+    width: auto;
+    padding: 10px;
 }
 
 .card {
     width: 50px;
     height: 50px;
-    background-color: #2f6fed;
+    background: linear-gradient(135 deg, #ff6a00, #ee0979);
     color: white;
     display: flex;
     align-items: center;
@@ -88,23 +108,24 @@ button:hover {
     font-size: 35px;
     border-radius: 20px;
     cursor: pointer;
-    transition: transfrom 0.2s ease, background-color 0.2s ease;
+    transition: transfrom 0.2s ease, background-color 0.3s ease;
     transform-style: preserve-3d;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .card.flipped {
-    background-color: #ffffff;
+    background: white;
     color: #222;
 }
 
 .card.matched {
-    background-color: #8bc34a;
+    background: linear-gradient(135deg, #00c853, #64dd17);
     color: white;
     transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0,255,0,0.6);
 }
 
 .card.flip-anim {
@@ -144,7 +165,8 @@ button:hover {
 
 #gameStatus {
     font-size: 16px;
-    color: #000000;
+    color: #444;
+    font-weight: bold;
 }
 
 #winPopup {
@@ -159,11 +181,25 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    z-index: 9999;
+}
+
+#winPopup .popup-box {
+    border: 3px solid gold;
+    background: #111;
+    color: white;
+}
+
+#finalMoves,
+#finalTime,
+#rating {
+    font-weight: bold;
 }
 
 #rating {
     font-size: 18px;
-    color: #ff9800;
+    color: gold;
     margin-top: 10px;
 }
 

@@ -78,15 +78,16 @@ function calculateRating() {
     let moves = Number(document.getElementById("moves").innerText);
 
     if (moves <= 10) {
-        return "⭐⭐⭐";
+            return "⭐⭐⭐";
     }
-    else if (moves <= 18) {
-        return "⭐⭐";
+    else if (moves <= 14) {
+            return "⭐⭐";
     }
-    else {
-        return "⭐";
+        else {
+            return "⭐";
     }
 }
+
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -132,7 +133,7 @@ function startGame() {
 
     document.getElementById("moves").innerText = "0";
     document.getElementById("gameStatus").innerText = "Match all cards to complete the level";
-
+    document.getElementById("rating").innerText = "Rating: ⭐⭐⭐";
     startTimer();
 
 
@@ -215,7 +216,7 @@ function checkMatch() {
             secondCard.classList.remove("flip-anim");
 
             resetSelection();
-            
+
         }, 800);
     }
 }
@@ -247,6 +248,28 @@ function checkWin() {
 }
 
 function restartGame() {
+
+    document.getElementById("winPopup").style.display = "none";
+
+    firstCard = null;
+    secondCard = null;
+    lockBoard = false;
+    matchedCount = 0;
+
+    startGame();
+}
+
+function nextLevel() {
+    
+    if (currentLevel === "Easy") {
+        setLevel("Medium");
+    }
+    else if (currentLevel === "Medium") {
+        setLevel("Hard");
+    }
+    else {
+        setLevel("Easy");
+    }
 
     document.getElementById("winPopup").style.display = "none";
 
